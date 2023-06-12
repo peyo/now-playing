@@ -102,5 +102,7 @@ async def main(callback):
 '''
 
 if __name__ == "__main__":
-    from track_id import identify_track
-    asyncio.run(handle_track_recording(os.path.join(output_folder, f"recording_{time.strftime('%Y%m%d-%H%M%S', time.gmtime())}.wav"), time.time()))
+    asyncio.run(handle_track_recording(
+        os.path.join(output_folder, f"recording_{time.strftime('%Y%m%d-%H%M%S', time.gmtime())}.wav"),
+        time.time()
+    ))

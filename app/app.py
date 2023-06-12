@@ -34,11 +34,12 @@ def get_track():
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
         return response
     
-    print("app.py:", "Hell yeah!")
+    asyncio.run(handle_track_recording(last_track_info, last_track_timestamp))  # Execute handle_track_recording
 
+    print("app.py:", "Hell yeah!")
     track_data = get_latest_track_info()  # Call get_latest_track_info() before the if statement
     
-    if last_track_info:
+    if track_data:
         if track_data != last_track_info:
             last_track_info = track_data
             last_track_timestamp = time.time()
@@ -50,12 +51,9 @@ def get_track():
             if time_diff <= 60:
                 print("app.py:", track_data)
                 return jsonify(track_data), 200
-            else:
-                print("app.py:", "Yup!")
-                return "No recent tracks found.", 204
-    else:
-        print("app.py:", "Hell yeah 4!")
-        return "No recent tracks found.", 204
+    
+    print("app.py:", "No recent tracks found.")
+    return "No recent tracks found.", 204
 
 def get_latest_track_info():
     with open(database_path, "r") as file:
