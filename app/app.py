@@ -1,30 +1,32 @@
 from flask import Flask, jsonify, request, make_response
-# Flask: A micro web framework used to build web applications in Python.
-# jsonify: A Flask utility function for converting Python objects to JSON responses.
-# request: A Flask object that represents the incoming HTTP request.
-# make_response: A Flask utility function for creating HTTP responses.
-from flask_cors import CORS     # A Flask extension for handling Cross-Origin Resource Sharing (CORS) headers, allowing cross-origin requests.
-import os                       # Interact with the operating system, providing functions for working with files, directories, and paths.
-import time                     # Work with time-related functions and values, such as getting the current time, formatting timestamps, etc.
-import asyncio                  # Write asynchronous code
+from flask_cors import CORS
+import os
+import time
+import asyncio
+import logging
 
-# Import the main function from track_record module
 from api.modules.track_record import handle_track_recording
 
 app = Flask(__name__)
 CORS(app)
+app.debug = True  # Enable debug mode
 
-last_track_info = ""  # Global variable to store the last known track information
-last_track_timestamp = 0  # Global variable to store the timestamp of the last known track
+last_track_info = ""
+last_track_timestamp = 0
 database_path = os.path.join("track_database", "database.txt")
 
-async def loop_track_recording():
-    while True:
-        await asyncio.sleep(12)
-        await handle_track_recording()
+# Configure the logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-@app.route('/api/track_id', methods=['GET', 'OPTIONS'])
-def get_track():
+async def loop_track_recording():
+    await asyncio.sleep(12)  # Wait for 12 seconds before starting the loop
+    while True:
+        await handle_track_recording(last_track_info, last_track_timestamp)
+        await asyncio.sleep(12)
+
+@app.route('/api/now_playing', methods=['GET', 'OPTIONS'])
+def now_playing():
     global last_track_info
     global last_track_timestamp
     
@@ -34,28 +36,19 @@ def get_track():
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
         return response
     
-    asyncio.run(handle_track_recording(last_track_info, last_track_timestamp))  # Execute handle_track_recording
+    asyncio.create_task(handle_track_recording(last_track_info, last_track_timestamp))
 
-    print("app.py:", "Hell yeah!")
-    track_data = get_latest_track_info()  # Call get_latest_track_info() before the if statement
+    track_data = get_latest_track_info()
     
+    logger.info("Hell yeah 2!")
     if track_data:
-        if track_data != last_track_info:
-            last_track_info = track_data
-            last_track_timestamp = time.time()
-            print("app.py:", track_data)
-            return jsonify(track_data), 200
-        else:
-            current_timestamp = time.time()
-            time_diff = current_timestamp - last_track_timestamp
-            if time_diff <= 60:
-                print("app.py:", track_data)
-                return jsonify(track_data), 200
+        title, subtitle = track_data.split(" - ")
+        return jsonify({"title": title, "subtitle": subtitle}), 200
     
-    print("app.py:", "No recent tracks found.")
     return "No recent tracks found.", 204
 
 def get_latest_track_info():
+    logger.info("Hell yeah 1!")
     with open(database_path, "r") as file:
         lines = file.readlines()
         if lines:
@@ -66,13 +59,29 @@ def get_latest_track_info():
             current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
             twelve_seconds_ago = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time() - 12))
             
+            logger.info("Timestamp:", timestamp)
+            logger.info("Twelve seconds ago:", twelve_seconds_ago)
+
             if timestamp > twelve_seconds_ago:
-                print(f"{title} - {subtitle}")
+                logger.info(f"{title} - {subtitle}")
                 return f"{title} - {subtitle}"
         
         return ""
 
 if __name__ == '__main__':
+    get_latest_track_info()  # Call the function here
+
+    last_track_timestamp = time.strftime("%Y%m%d-%H%M%S", time.gmtime())  # AKA timestamp
+    last_track_info = f"recording_{last_track_timestamp}.wav"  # AKA filename
+    
     loop = asyncio.get_event_loop()
-    loop.create_task(loop_track_recording())
-    app.run(host='localhost', port=5000, debug=True)
+    loop.run_until_complete(handle_track_recording(last_track_info, last_track_timestamp))  # Run handle_track_recording once initially
+    
+    loop.create_task(loop_track_recording())   # Start the loop_track_recording task
+    
+    try:
+        loop.run_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        loop.close()

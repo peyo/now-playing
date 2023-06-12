@@ -57,17 +57,18 @@ def record_track():
 
     return frames
 
-def save_audio(frames, filename):
+def save_audio(frames, filename):    
     p = pyaudio.PyAudio()
 
-    wf = wave.open(filename, 'wb')
+    output_path = os.path.join(output_folder, filename)
+    wf = wave.open(output_path, 'wb')
     wf.setnchannels(channels)
     wf.setsampwidth(p.get_sample_size(sample_format))
     wf.setframerate(sample_rate)
     wf.writeframes(b''.join(frames))
     wf.close()
 
-async def handle_track_recording(filename, timestamp):
+async def handle_track_recording(filename, timestamp):  # main
     frames = record_track()
     save_audio(frames, filename)
     print("track_record.py", "Saved recording:", filename)
@@ -84,25 +85,7 @@ async def handle_track_recording(filename, timestamp):
         await identify_track(output_folder)
         new_recording_available = False
 
-'''
-async def main(callback):
-    new_recording_available = False  # Initialize the variable with a default value
-
-    while True:
-        timestamp = time.strftime("%Y%m%d-%H%M%S", time.gmtime())
-        filename = os.path.join(output_folder, f"recording_{timestamp}.wav")
-
-        await handle_track_recording(filename, timestamp)
-
-        await asyncio.sleep(12)
-
-        if new_recording_available:
-            callback(filename, timestamp)  # Invoke the callback function with the necessary arguments
-            new_recording_available = False  # Reset the flag
-'''
-
 if __name__ == "__main__":
-    asyncio.run(handle_track_recording(
-        os.path.join(output_folder, f"recording_{time.strftime('%Y%m%d-%H%M%S', time.gmtime())}.wav"),
-        time.time()
-    ))
+    timestamp = time.strftime("%Y%m%d-%H%M%S", time.gmtime())
+    filename = f"recording_{timestamp}.wav"
+    asyncio.run(handle_track_recording(filename, timestamp))

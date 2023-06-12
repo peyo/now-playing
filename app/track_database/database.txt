@@ -1,58 +1,3 @@
-2023-06-11 07:18:48 | All I Ask - Adele
-2023-06-11 07:26:07 | All I Ask - Adele
-2023-06-11 07:29:16 | All I Ask - Adele
-2023-06-11 07:29:41 | All I Ask - Adele
-2023-06-11 07:30:07 | All I Ask - Adele
-2023-06-11 07:32:02 | All I Ask - Adele
-2023-06-11 19:11:33 | These Walls (feat. Bilal, Anna Wise & Thundercat) - Kendrick Lamar
-2023-06-11 19:11:58 | These Walls (feat. Bilal, Anna Wise & Thundercat) - Kendrick Lamar
-2023-06-11 19:12:24 | These Walls (feat. Bilal, Anna Wise & Thundercat) - Kendrick Lamar
-2023-06-12 03:00:49 | Kill Jay Z - JAY-Z
-2023-06-12 03:01:15 | Kill Jay Z - JAY-Z
-2023-06-12 03:01:41 | Kill Jay Z - JAY-Z
-2023-06-12 03:02:06 | Kill Jay Z - JAY-Z
-2023-06-12 03:02:32 | Kill Jay Z - JAY-Z
-2023-06-12 03:02:57 | Kill Jay Z - JAY-Z
-2023-06-12 03:03:23 | Kill Jay Z - JAY-Z
-2023-06-12 03:03:48 | The Story of O.J. - JAY-Z
-2023-06-12 03:37:01 | Take It Back - Logic
-2023-06-12 03:37:26 | Take It Back - Logic
-2023-06-12 03:39:27 | Take It Back - Logic
-2023-06-12 03:39:53 | Take It Back - Logic
-2023-06-12 03:40:18 | Take It Back - Logic
-2023-06-12 03:40:44 | Take It Back - Logic
-2023-06-12 03:46:48 | America (feat. Black Thought, Chuck D, Big Lenbo & NO I.D.) - Logic
-2023-06-12 04:06:55 | Anziety (feat. Lucy Rose) - Logic
-2023-06-12 04:07:21 | Anziety (feat. Lucy Rose) - Logic
-2023-06-12 04:07:47 | Anziety (feat. Lucy Rose) - Logic
-2023-06-12 04:08:12 | Anziety (feat. Lucy Rose) - Logic
-2023-06-12 04:08:38 | Anziety (feat. Lucy Rose) - Logic
-2023-06-12 04:09:04 | Anziety (feat. Lucy Rose) - Logic
-2023-06-12 04:09:29 | Anziety (feat. Lucy Rose) - Logic
-2023-06-12 04:09:55 | Anziety (feat. Lucy Rose) - Logic
-2023-06-12 04:10:21 | Black SpiderMan (feat. Damian Lemar Hudson) - Logic
-2023-06-12 04:10:46 | Black SpiderMan (feat. Damian Lemar Hudson) - Logic
-2023-06-12 04:11:12 | Black SpiderMan (feat. Damian Lemar Hudson) - Logic
-2023-06-12 04:11:38 | Black SpiderMan (feat. Damian Lemar Hudson) - Logic
-2023-06-12 04:12:03 | Black SpiderMan (feat. Damian Lemar Hudson) - Logic
-2023-06-12 04:12:29 | Black SpiderMan (feat. Damian Lemar Hudson) - Logic
-2023-06-12 04:12:55 | Black SpiderMan (feat. Damian Lemar Hudson) - Logic
-2023-06-12 04:18:21 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:18:47 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:19:12 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:19:38 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:20:04 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:20:29 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:20:55 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:21:20 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:21:46 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:22:12 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:22:37 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:23:03 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 04:23:28 | AfricAryaN (feat. Neil deGrasse Tyson) - Logic
-2023-06-12 05:06:59 | Everybody - Logic
-2023-06-12 05:07:24 | Confess (feat. Killer Mike) - Logic
-2023-06-12 15:30:28 | Like Woah - Logic
 2023-06-12 15:57:38 | Babel (Scene) - Logic
 2023-06-12 15:58:04 | Babel (Scene) - Logic
 2023-06-12 15:58:55 | Paradise (feat. Jesse Boykins III) - Logic
@@ -65,3 +10,92 @@
 2023-06-12 16:01:29 | Paradise (feat. Jesse Boykins III) - Logic
 2023-06-12 16:04:54 | Never Been - Logic
 2023-06-12 16:48:02 | Lord Willin' - Logic
+2023-06-12 17:41:20 | City of Stars - Logic
+2023-06-12 17:47:06 | City of Stars - Logic
+2023-06-12 17:51:14 | City of Stars - Logic
+2023-06-12 17:52:44 | City of Stars - Logic
+2023-06-12 18:00:40 | City of Stars - Logic
+2023-06-12 18:02:31 | City of Stars - Logic
+2023-06-12 18:02:46 | City of Stars - Logic
+2023-06-12 18:12:51 | City of Stars - Logic
+2023-06-12 18:17:19 | City of Stars - Logic
+2023-06-12 18:18:07 | Never Been - Logic
+2023-06-12 18:26:57 | The Incredible True Story - Logic
+2023-06-12 18:27:11 | The Incredible True Story - Logic
+2023-06-12 18:28:37 | What's Your Passion - WakeUpTime
+2023-06-12 18:29:51 | The Incredible True Story - Logic
+2023-06-12 18:30:06 | The Incredible True Story - Logic
+2023-06-12 19:11:32 | Stainless (feat. Dria) - Logic
+2023-06-12 19:11:32 | Stainless (feat. Dria) - Logic
+2023-06-12 19:11:58 | Stainless (feat. Dria) - Logic
+2023-06-12 19:12:24 | Babel (Scene) - Logic
+2023-06-12 19:15:24 | Paradise (feat. Jesse Boykins III) - Logic
+2023-06-12 19:15:24 | Paradise (feat. Jesse Boykins III) - Logic
+2023-06-12 19:17:50 | Paradise (feat. Jesse Boykins III) - Logic
+2023-06-12 19:18:04 | Paradise (feat. Jesse Boykins III) - Logic
+2023-06-12 19:18:29 | Never Been - Logic
+2023-06-12 19:18:55 | Never Been - Logic
+2023-06-12 19:19:21 | Never Been - Logic
+2023-06-12 19:19:46 | Never Been - Logic
+2023-06-12 19:20:12 | Never Been - Logic
+2023-06-12 19:20:37 | Never Been - Logic
+2023-06-12 19:21:03 | Never Been - Logic
+2023-06-12 19:21:25 | Never Been - Logic
+2023-06-12 19:21:50 | Never Been - Logic
+2023-06-12 19:22:55 | Run It - Logic
+2023-06-12 19:23:21 | Run It - Logic
+2023-06-12 19:23:46 | Run It - Logic
+2023-06-12 19:24:04 | Run It - Logic
+2023-06-12 19:24:30 | Run It - Logic
+2023-06-12 19:24:56 | Run It - Logic
+2023-06-12 19:25:21 | Run It - Logic
+2023-06-12 19:25:53 | Lucidity (Scene) - Logic
+2023-06-12 19:26:19 | Lucidity (Scene) - Logic
+2023-06-12 19:26:45 | The Incredible True Story - Logic
+2023-06-12 19:27:10 | The Incredible True Story - Logic
+2023-06-12 19:27:36 | The Incredible True Story - Logic
+2023-06-12 19:28:02 | The Incredible True Story - Logic
+2023-06-12 19:28:27 | The Incredible True Story - Logic
+2023-06-12 19:28:53 | The Incredible True Story - Logic
+2023-06-12 19:29:19 | The Incredible True Story - Logic
+2023-06-12 19:29:44 | What's Your Passion - WakeUpTime
+2023-06-12 19:30:10 | What's Your Passion - WakeUpTime
+2023-06-12 19:30:42 | The Incredible True Story - Logic
+2023-06-12 19:31:07 | The Incredible True Story - Logic
+2023-06-12 19:31:41 | The Incredible True Story - Logic
+2023-06-12 19:32:07 | The Incredible True Story - Logic
+2023-06-12 19:32:32 | The Incredible True Story - Logic
+2023-06-12 19:32:58 | The Incredible True Story - Logic
+2023-06-12 19:33:36 | The Incredible True Story - Logic
+2023-06-12 19:34:02 | Contact - Logic
+2023-06-12 19:34:28 | Contact - Logic
+2023-06-12 19:34:53 | Contact - Logic
+2023-06-12 19:36:31 | Fade Away - Logic
+2023-06-12 19:36:57 | Fade Away - Logic
+2023-06-12 19:37:23 | Fade Away - Logic
+2023-06-12 19:37:49 | Fade Away - Logic
+2023-06-12 19:40:40 | Fade Away - Logic
+2023-06-12 19:41:05 | Fade Away - Logic
+2023-06-12 19:41:31 | Upgrade - Logic
+2023-06-12 19:41:57 | Upgrade - Logic
+2023-06-12 19:42:34 | Upgrade - Logic
+2023-06-12 19:42:59 | Upgrade - Logic
+2023-06-12 19:46:23 | Like Woah - Logic
+2023-06-12 19:46:48 | Like Woah - Logic
+2023-06-12 19:47:23 | Like Woah - Logic
+2023-06-12 19:47:49 | Like Woah - Logic
+2023-06-12 19:48:17 | Like Woah - Logic
+2023-06-12 19:48:43 | Like Woah - Logic
+2023-06-12 19:49:09 | Like Woah - Logic
+2023-06-12 19:49:34 | Young Jesus (feat. Big Lenbo) - Logic
+2023-06-12 19:50:00 | Young Jesus (feat. Big Lenbo) - Logic
+2023-06-12 19:50:26 | Young Jesus (feat. Big Lenbo) - Logic
+2023-06-12 19:50:51 | Young Jesus (feat. Big Lenbo) - Logic
+2023-06-12 19:51:17 | Young Jesus (feat. Big Lenbo) - Logic
+2023-06-12 19:51:43 | Young Jesus (feat. Big Lenbo) - Logic
+2023-06-12 19:52:08 | Young Jesus (feat. Big Lenbo) - Logic
+2023-06-12 19:52:34 | Young Jesus (feat. Big Lenbo) - Logic
+2023-06-12 19:52:59 | Young Jesus (feat. Big Lenbo) - Logic
+2023-06-12 19:53:39 | Innermission (feat. Lucy Rose) - Logic
+2023-06-12 19:54:05 | Innermission (feat. Lucy Rose) - Logic
+2023-06-12 19:54:30 | Innermission (feat. Lucy Rose) - Logic
