@@ -4,6 +4,7 @@ import os
 import time
 import asyncio
 import logging
+import threading
 
 from api.modules.track_record import handle_track_recording
 
@@ -18,12 +19,6 @@ database_path = os.path.join("track_database", "database.txt")
 # Configure the logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-async def loop_track_recording():
-    await asyncio.sleep(12)  # Wait for 12 seconds before starting the loop
-    while True:
-        await handle_track_recording(last_track_info, last_track_timestamp)
-        await asyncio.sleep(12)
 
 @app.route('/api/now_playing', methods=['GET', 'OPTIONS'])
 def now_playing():
@@ -56,21 +51,26 @@ def get_latest_track_info():
             timestamp, title_subtitle = latest_track.split(" | ")
             title, subtitle = title_subtitle.split(" - ")
             
-            current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
             twelve_seconds_ago = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time() - 12))
-            
-            logger.info("Timestamp:", timestamp)
-            logger.info("Twelve seconds ago:", twelve_seconds_ago)
 
-            if timestamp > twelve_seconds_ago:
-                logger.info(f"{title} - {subtitle}")
+            if time.mktime(time.strptime(twelve_seconds_ago, "%Y-%m-%d %H:%M:%S")) <= time.mktime(time.strptime(timestamp, "%Y-%m-%d %H:%M:%S")) <= time.mktime(time.strptime(twelve_seconds_ago, "%Y-%m-%d %H:%M:%S")) + 12:
+                logger.info("%s - %s", title, subtitle)
                 return f"{title} - {subtitle}"
         
         return ""
+    
+async def loop_track_recording():
+    await asyncio.sleep(12)  # Wait for 12 seconds before starting the loop
+    while True:
+        await handle_track_recording(last_track_info, last_track_timestamp)
+        await asyncio.sleep(12)
+
+def track_info_loop():
+    while True:
+        get_latest_track_info()
+        time.sleep(27)
 
 if __name__ == '__main__':
-    get_latest_track_info()  # Call the function here
-
     last_track_timestamp = time.strftime("%Y%m%d-%H%M%S", time.gmtime())  # AKA timestamp
     last_track_info = f"recording_{last_track_timestamp}.wav"  # AKA filename
     
@@ -79,6 +79,9 @@ if __name__ == '__main__':
     
     loop.create_task(loop_track_recording())   # Start the loop_track_recording task
     
+    track_thread = threading.Thread(target=track_info_loop)
+    track_thread.start()
+
     try:
         loop.run_forever()
     except KeyboardInterrupt:
