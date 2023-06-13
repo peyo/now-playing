@@ -69,21 +69,22 @@ def save_audio(frames, filename):
     wf.close()
 
 async def handle_track_recording(filename, timestamp):  # main
-    frames = record_track()
-    save_audio(frames, filename)
-    print("track_record.py", "Saved recording:", filename)
+    if filename != "":
+        frames = record_track()
+        save_audio(frames, filename)
+        print("track_record.py", "Saved recording:", filename)
 
-    new_recording_available = True
+        new_recording_available = True
 
-    max_files = 5
-    delete_oldest_file(output_folder, max_files)
+        max_files = 5
+        delete_oldest_file(output_folder, max_files)
 
-    max_lines = 100
-    delete_oldest_line(database_file, max_lines)
+        max_lines = 100
+        delete_oldest_line(database_file, max_lines)
 
-    if new_recording_available:
-        await identify_track(output_folder)
-        new_recording_available = False
+        if new_recording_available:
+            await identify_track(output_folder)
+            new_recording_available = False
 
 if __name__ == "__main__":
     timestamp = time.strftime("%Y%m%d-%H%M%S", time.gmtime())

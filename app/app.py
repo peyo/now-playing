@@ -15,6 +15,7 @@ app.debug = True  # Enable debug mode
 last_track_info = ""
 last_track_timestamp = 0
 database_path = os.path.join("track_database", "database.txt")
+start_recording_flag = False  # Flag to indicate whether to start the recording or not
 
 # Configure the logging
 logging.basicConfig(level=logging.INFO)
@@ -31,7 +32,9 @@ def now_playing():
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
         return response
     
-    asyncio.create_task(handle_track_recording(last_track_info, last_track_timestamp))
+    if start_recording_flag:
+        asyncio.create_task(handle_track_recording(last_track_info, last_track_timestamp))
+        start_recording_flag = False
 
     track_data = get_latest_track_info()
     
@@ -75,7 +78,6 @@ if __name__ == '__main__':
     last_track_info = f"recording_{last_track_timestamp}.wav"  # AKA filename
     
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(handle_track_recording(last_track_info, last_track_timestamp))  # Run handle_track_recording once initially
     
     loop.create_task(loop_track_recording())   # Start the loop_track_recording task
     

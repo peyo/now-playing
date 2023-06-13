@@ -11,7 +11,7 @@ function NowPlaying() {
 
   const fetchTrackInfo = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/track_id');
+      const response = await fetch('http://localhost:5000/api/now_playing');
       if (response.ok) {
         const data = await response.json();
         setTrackInfo(data);
