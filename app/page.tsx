@@ -1,9 +1,13 @@
-import NowPlaying from "./now_playing"
+'use client'
+
+import StartButton from './components/startButton';
+import StopButton from './components/stopButton';
 
 export default function Page() {
   return (
-    <>
-      <NowPlaying />
-    </>
-  )
-}
+    <div>
+      <StartButton />
+      <StopButton />
+    </div>
+  );
+};

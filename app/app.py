@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
+from flask_cors import CORS
 import asyncio
 import threading
 import time
@@ -6,6 +7,7 @@ import os
 from api.modules.track_record import handle_track_recording
 
 app = Flask(__name__)
+CORS(app, origins='*')
 
 # Get the absolute path of the current directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -16,7 +18,7 @@ loop_interval = 12  # Interval between recording loops in seconds
 @app.route('/api/start', methods=['POST'])
 def record_endpoint():
     global recording_active
-
+    
     if request.method == 'POST':
         if not recording_active:
             recording_active = True
