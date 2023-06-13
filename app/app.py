@@ -1,92 +1,85 @@
-from flask import Flask, jsonify, request, make_response
-from flask_cors import CORS
-import os
-import time
+from flask import Flask, jsonify, request
 import asyncio
-import logging
 import threading
-
+import time
+import os
 from api.modules.track_record import handle_track_recording
 
 app = Flask(__name__)
-CORS(app)
-app.debug = True  # Enable debug mode
 
-last_track_info = ""
-last_track_timestamp = 0
-database_path = os.path.join("track_database", "database.txt")
-start_recording_flag = False  # Flag to indicate whether to start the recording or not
+# Get the absolute path of the current directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Configure the logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+recording_active = False  # Flag to indicate if recording is active
+loop_interval = 12  # Interval between recording loops in seconds
 
-@app.route('/api/now_playing', methods=['GET', 'OPTIONS'])
-def now_playing():
-    global last_track_info
-    global last_track_timestamp
+@app.route('/api/start', methods=['POST'])
+def record_endpoint():
+    global recording_active
+
+    if request.method == 'POST':
+        if not recording_active:
+            recording_active = True
+            return 'Recording activated.'
+        else:
+            return 'Recording already active.'
+    else:
+        return 'Invalid request method.'
+
+@app.route('/api/stop', methods=['POST'])
+def stop_endpoint():
+    global recording_active
+
+    if request.method == 'POST':
+        if recording_active:
+            recording_active = False
+            return 'Recording stopped.'
+        else:
+            return 'No active recording.'
+    else:
+        return 'Invalid request method.'
     
-    if request.method == 'OPTIONS':
-        # Handle CORS preflight request
-        response = make_response()
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        return response
-    
-    if start_recording_flag:
-        asyncio.create_task(handle_track_recording(last_track_info, last_track_timestamp))
-        start_recording_flag = False
+@app.route('/api/check_new_entry', methods=['GET'])
+def check_new_entry():
+    # Construct the path to the database file
+    database_file = os.path.join(current_dir, 'track_database', 'database.txt')
 
-    track_data = get_latest_track_info()
-    
-    logger.info("Hell yeah 2!")
-    if track_data:
-        title, subtitle = track_data.split(" - ")
-        return jsonify({"title": title, "subtitle": subtitle}), 200
-    
-    return "No recent tracks found.", 204
-
-def get_latest_track_info():
-    logger.info("Hell yeah 1!")
-    with open(database_path, "r") as file:
+    # Read the contents of the database file
+    with open(database_file, 'r') as file:
         lines = file.readlines()
-        if lines:
-            latest_track = lines[-1].strip()
-            timestamp, title_subtitle = latest_track.split(" | ")
-            title, subtitle = title_subtitle.split(" - ")
-            
-            twelve_seconds_ago = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time() - 12))
-
-            if time.mktime(time.strptime(twelve_seconds_ago, "%Y-%m-%d %H:%M:%S")) <= time.mktime(time.strptime(timestamp, "%Y-%m-%d %H:%M:%S")) <= time.mktime(time.strptime(twelve_seconds_ago, "%Y-%m-%d %H:%M:%S")) + 12:
-                logger.info("%s - %s", title, subtitle)
-                return f"{title} - {subtitle}"
-        
-        return ""
     
-async def loop_track_recording():
-    await asyncio.sleep(12)  # Wait for 12 seconds before starting the loop
-    while True:
-        await handle_track_recording(last_track_info, last_track_timestamp)
-        await asyncio.sleep(12)
+    # Extract the timestamp of the last entry in the database
+    last_entry = lines[-1].strip().split('|')
+    last_timestamp = last_entry[0].strip() if last_entry else None
+    
+    # Get the current timestamp
+    current_timestamp = time.strftime("%Y%m%d-%H%M%S", time.gmtime())
+    
+    if last_timestamp:
+        last_entry_time = time.strptime(last_timestamp, "%Y-%m-%d %H:%M:%S")
+        current_time = time.strptime(current_timestamp, "%Y%m%d-%H%M%S")
+        time_difference = time.mktime(current_time) - time.mktime(last_entry_time)
+        
+        if time_difference <= 27:
+            # New entry detected, send the new entry to the frontend
+            return jsonify({'new_entry': last_entry}), 200
+    
+    # No new entry detected
+    return jsonify({'new_entry': None}), 200
 
-def track_info_loop():
+def track_recording_loop():
+    global recording_active
+
     while True:
-        get_latest_track_info()
-        time.sleep(27)
+        if recording_active:
+            timestamp = time.strftime("%Y%m%d-%H%M%S", time.gmtime())
+            filename = f"recording_{timestamp}.wav"
+            asyncio.run(handle_track_recording(filename, timestamp))
+
+        time.sleep(loop_interval)
 
 if __name__ == '__main__':
-    last_track_timestamp = time.strftime("%Y%m%d-%H%M%S", time.gmtime())  # AKA timestamp
-    last_track_info = f"recording_{last_track_timestamp}.wav"  # AKA filename
-    
-    loop = asyncio.get_event_loop()
-    
-    loop.create_task(loop_track_recording())   # Start the loop_track_recording task
-    
-    track_thread = threading.Thread(target=track_info_loop)
+    track_thread = threading.Thread(target=track_recording_loop)
     track_thread.start()
 
-    try:
-        loop.run_forever()
-    except KeyboardInterrupt:
-        pass
-    finally:
-        loop.close()
+    app.run()

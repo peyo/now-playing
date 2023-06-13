@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 function NowPlaying() {
   const [trackInfo, setTrackInfo] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchTrackInfo();
@@ -20,16 +21,30 @@ function NowPlaying() {
       }
     } catch (error) {
       console.log('Error:', error.message);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handleFetchButtonClick = () => {
+    setLoading(true);
+    fetchTrackInfo();
   };
 
   return (
     <div>
       <h1>Now Playing</h1>
-      {trackInfo ? (
-        <p>{trackInfo}</p>
-      ) : (
+      {loading ? (
         <p>Loading track information...</p>
+      ) : (
+        <>
+          {trackInfo ? (
+            <p>{trackInfo}</p>
+          ) : (
+            <p>No recent tracks found.</p>
+          )}
+          <button onClick={handleFetchButtonClick}>Start</button>
+        </>
       )}
     </div>
   );
