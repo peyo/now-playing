@@ -24,7 +24,7 @@ const StartButton = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <div>

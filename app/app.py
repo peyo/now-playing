@@ -7,7 +7,7 @@ import os
 from api.modules.track_record import handle_track_recording
 
 app = Flask(__name__)
-CORS(app, origins='*')
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Get the absolute path of the current directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
