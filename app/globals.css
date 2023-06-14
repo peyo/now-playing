@@ -16,6 +16,11 @@
   }
 }
 
+@font-face {
+  font-family: 'MyFont';
+  src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -26,11 +31,77 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.container {
+  font-family: 'MyFont', sans-serif;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  width: 400px;
+  height: 200px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* Align buttons to the bottom of the container */
+  margin-bottom: 30px;
+  height: 24px; /* Set the height to match the data container */
+}
+
+.start-button,
+.stop-button {
+  display: flex;
+  align-items: flex-end; /* Align buttons to the bottom of the container */
+}
+
+.button-left {
+  text-align: left;
+  margin-right: 120px; /* Add some spacing between the buttons */
+}
+
+.button-right {
+  text-align: right;
+  margin-left: 120px; /* Add some spacing between the buttons */
+}
+
+.data-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  width: calc(81% - 9px); /* Subtract the total left and right margin values from 100% */
+  scrollbar-width: none; /* Hide the scrollbar for Firefox */
+  min-height: 20px; /* Set a minimum height for the container */
+}
+
+.data-container::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar for Chrome and Safari */
+}
+
+.scrolling-text {
+  margin: 0;
+  animation: scrollText linear infinite;
+  white-space: nowrap; /* Prevent line breaks */
+  animation-duration: 12s; /* Adjust the duration as needed */
+  animation-timing-function: linear;
+  animation-delay: 2s; /* Delay the animation start if necessary */
+  animation-direction: reverse; /* Reverse the animation direction */
+}
+
 @keyframes scrollText {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%); /* Start from the left edge */
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* Scroll to the right edge */
   }
 }

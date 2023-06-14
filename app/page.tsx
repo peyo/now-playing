@@ -1,38 +1,27 @@
 'use client'
 
-import React, { useContext } from 'react';
-import { DataContext } from './components/dataContext';
-import StartButton from './components/startButton';
-import StopButton from './components/stopButton';
+import React, { useState } from 'react';
+import StartButton from './components/start_button';
+import StopButton from './components/stop_button';
+import './globals.css'
 
 export default function Page() {
-  const { dataContextValue } = useContext(DataContext);
+  const [data, setData] = useState('');
+
+  const onDataUpdate = (newData: string) => {
+    setData(newData);
+  };
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100vh',
-        }}
-      >
-        <div className="flex space-x-4">
-          <StartButton />
+    <div className="container">
+      <div className="box">
+        <div className="button-row">
+          <StartButton onDataUpdate={onDataUpdate} data={data} />
           <StopButton />
         </div>
-      </div>
-      <div style={{ overflow: 'hidden', whiteSpace: 'nowrap' }}>
-        <p
-          style={{
-            animation: 'scrollText 20s linear infinite',
-            margin: 0,
-            padding: '5px',
-          }}
-        >
-          {dataContextValue || ''}
-        </p>
+        <div className="data-container">
+          <p className="scrolling-text">{data}</p> {/* Display the updated data */}
+        </div>
       </div>
     </div>
   );

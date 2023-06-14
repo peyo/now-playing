@@ -11,7 +11,11 @@ const StopButton = () => {
     }
   };
 
-  return <button onClick={handleClick}>Stop</button>;
+  return (
+    <div className="stop-button">
+      <button onClick={handleClick} className="button-right">Stop</button>
+    </div>
+  );
 };
 
 export default StopButton;
