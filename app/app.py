@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, request, make_response
-from flask_cors import CORS
+from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
 import asyncio
 import threading
 import time
@@ -7,7 +7,7 @@ import os
 from api.modules.track_record import handle_track_recording
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, support_credentials=True)
 
 # Get the absolute path of the current directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -16,6 +16,7 @@ recording_active = False  # Flag to indicate if recording is active
 loop_interval = 12  # Interval between recording loops in seconds
 
 @app.route('/api/start', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def record_endpoint():
     global recording_active
     
@@ -29,6 +30,7 @@ def record_endpoint():
         return 'Invalid request method.'
 
 @app.route('/api/stop', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def stop_endpoint():
     global recording_active
 
@@ -42,6 +44,7 @@ def stop_endpoint():
         return 'Invalid request method.'
     
 @app.route('/api/check_new_entry', methods=['GET'])
+@cross_origin(supports_credentials=True)
 def check_new_entry():
     # Construct the path to the database file
     database_file = os.path.join(current_dir, 'track_database', 'database.txt')
@@ -84,4 +87,4 @@ if __name__ == '__main__':
     track_thread = threading.Thread(target=track_recording_loop)
     track_thread.start()
 
-    app.run()
+    app.run(host='127.0.0.1', port=5000)

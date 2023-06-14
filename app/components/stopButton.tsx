@@ -5,7 +5,7 @@ import axios from 'axios';
 const StopButton = () => {
   const handleClick = async () => {
     try {
-      await axios.post('http://localhost:5000/api/stop');
+      await axios.post('http://127.0.0.1:5000/api/stop');
     } catch (error) {
       console.log(error);
     }

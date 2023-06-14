@@ -1,16 +1,22 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import axios from 'axios';
+import '../globals.css'
+import { DataContext } from './dataContext';
 
 const StartButton = () => {
-  const [data, setData] = useState('');
+  const { setDataContextValue } = useContext(DataContext);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/check_new_entry');
+      const response = await axios.get('http://127.0.0.1:5000/api/check_new_entry');
       const newEntry = response.data.new_entry;
-      setData(newEntry || '');
+      setDataContextValue(newEntry || ''); // Update the context value
     } catch (error) {
       console.log(error);
     }
@@ -18,7 +24,7 @@ const StartButton = () => {
 
   const handleClick = async () => {
     try {
-      await axios.post('http://localhost:5000/api/start');
+      await axios.post('http://127.0.0.1:5000/api/start');
       fetchData();
       setInterval(fetchData, 27000);
     } catch (error) {
@@ -28,8 +34,9 @@ const StartButton = () => {
 
   return (
     <div>
-      <button onClick={handleClick}>Start</button>
-      <p>{data}</p>
+      <div>
+        <button onClick={handleClick}>Start</button>
+      </div>
     </div>
   );
 };
