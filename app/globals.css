@@ -80,7 +80,7 @@ body {
   white-space: nowrap;
   width: calc(81% - 9px); /* Subtract the total left and right margin values from 100% */
   scrollbar-width: none; /* Hide the scrollbar for Firefox */
-  min-height: 20px; /* Set a minimum height for the container */
+  min-height: 26px; /* Set a minimum height for the container */
 }
 
 .data-container::-webkit-scrollbar {
