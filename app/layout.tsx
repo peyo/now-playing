@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Now Playing',
-  description: "Uncover Your Soundtrack: ID the Music You're Playing.",
+  description: "Catch the Beat, Identify the Track - Your Record Player Companion.",
 }
 
 export default function RootLayout({

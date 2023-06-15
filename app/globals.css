@@ -2,19 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 @font-face {
   font-family: 'MyFont';
@@ -22,13 +10,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #c0c7cf;
 }
 
 .container {
@@ -43,7 +25,7 @@ body {
 .box {
   width: 400px;
   height: 200px;
-  border: 1px solid #dddddd;
+  border: 1px solid #000000;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -91,10 +73,9 @@ body {
   margin: 0;
   animation: scrollText linear infinite;
   white-space: nowrap; /* Prevent line breaks */
-  animation-duration: 12s; /* Adjust the duration as needed */
+  animation-duration: 9s; /* Adjust the duration as needed */
   animation-timing-function: linear;
-  animation-delay: 2s; /* Delay the animation start if necessary */
-  animation-direction: reverse; /* Reverse the animation direction */
+  animation-delay: 1s; /* Delay the animation start if necessary */
 }
 
 @keyframes scrollText {

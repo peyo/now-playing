@@ -1,11 +1,17 @@
 'use client'
 
 import axios from 'axios';
+import { Visualizer } from 'react-sound-visualizer';
 
-const StopButton = () => {
+interface StopButtonProps {
+  onStop: () => void;
+}
+
+const StopButton = ({ onStop }: StopButtonProps) => {
   const handleClick = async () => {
     try {
       await axios.post('http://127.0.0.1:5000/api/stop');
+      onStop(); // Call the onStop function provided as a prop
     } catch (error) {
       console.log(error);
     }
