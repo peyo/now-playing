@@ -7,9 +7,12 @@ import '../globals.css';
 interface StartButtonProps {
   onDataUpdate: (newData: string) => void;
   data: string;
+  setAudio: (audio: MediaStream | null) => void;
+  setShowVisualizer: (show: boolean) => void;
 }
 
-const StartButton = ({ onDataUpdate, data }: StartButtonProps) => {
+const StartButton = ({ onDataUpdate, data, setAudio, setShowVisualizer }: StartButtonProps) => {
+
   const fetchData = async () => {
     try {
       const response = await axios.get('http://127.0.0.1:5000/api/check_new_entry');
@@ -24,6 +27,14 @@ const StartButton = ({ onDataUpdate, data }: StartButtonProps) => {
   };
 
   const handleClick = async () => {
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: true,
+        video: false
+      })
+      .then(setAudio);
+    setShowVisualizer(true);
+
     try {
       await axios.post('http://127.0.0.1:5000/api/start');
       fetchData(); // Call fetchData() once to update the data immediately
@@ -36,7 +47,12 @@ const StartButton = ({ onDataUpdate, data }: StartButtonProps) => {
     // Assuming the timestamp is in the format "YYYY-MM-DD HH:MM:SS"
     const timestampRegex = /\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/;
     const trimmedData = (data ?? '').replace(timestampRegex, '').trim();
-    return trimmedData.replace(/^,\s*/, ''); // Remove leading comma and space
+    let result = trimmedData.replace(/^,\s*/, ''); // Remove leading comma and space
+
+    // Remove "None" from the result if it exists
+    result = result.replace(/ - None/g, '');
+  
+    return result;
   };
 
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);

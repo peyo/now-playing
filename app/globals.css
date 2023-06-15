@@ -23,10 +23,6 @@ body {
 }
 
 .box {
-  width: 400px;
-  height: 200px;
-  border: 1px solid #000000;
-  border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,6 +33,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end; /* Align buttons to the bottom of the container */
+  margin-top: 42px; /* Add some spacing between the buttons */
   margin-bottom: 30px;
   height: 24px; /* Set the height to match the data container */
 }
@@ -60,9 +57,17 @@ body {
 .data-container {
   overflow-x: auto;
   white-space: nowrap;
-  width: calc(81% - 9px); /* Subtract the total left and right margin values from 100% */
-  scrollbar-width: none; /* Hide the scrollbar for Firefox */
-  min-height: 26px; /* Set a minimum height for the container */
+  scrollbar-width: none;
+  margin-bottom: 30px;
+  height: 26px;
+  width: 318px;
+}
+
+.visualizer-container {
+  border: 1px solid #000000;
+  border-radius: .9vw;
+  height: 100px;
+  width: 316px;
 }
 
 .data-container::-webkit-scrollbar {

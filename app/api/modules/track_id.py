@@ -17,11 +17,11 @@ async def identify_track(output_folder):
             return subtitle, title
         except KeyError:
             print("track_id.py:", "No recent track information found.")
-            save_track_data("Loading...", "_ - ♪ ♫ ♬")  # Save the data to the text file
+            save_track_data("Song not found.", None)  # Save the data to the text file
             return None, None
   else:
         print("track_id.py:", "No files found in the output folder.")
-        save_track_data("Loading...", "_ - ♪ ♫ ♬")  # Save the data to the text file
+        save_track_data("Song not found.", None)  # Save the data to the text file
         return None, None
 
 def get_latest_file(output_folder):
