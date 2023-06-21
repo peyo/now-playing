@@ -17,3 +17,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Enjoy!
 
 Catch the Beat, Identify the Track - Your Record Player Companion
+
+## GIF
+
+![demo](https://github.com/peyo/now-playing/assets/55764217/b390d481-0870-4266-8878-bef97e54b497)
