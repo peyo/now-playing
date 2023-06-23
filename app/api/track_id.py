@@ -36,7 +36,7 @@ def get_latest_file(output_folder):
 # Save track information to track_database.database.txt
 def save_track_data(subtitle, title):
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    database_dir = os.path.join(current_dir, '..', '..', 'track_database')
+    database_dir = os.path.join(current_dir, '..', 'track_database')
     os.makedirs(database_dir, exist_ok=True)  # Create the 'track_database' directory if it doesn't exist
 
     database_file = os.path.join(database_dir, 'database.txt')

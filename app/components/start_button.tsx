@@ -68,7 +68,7 @@ const StartButton = ({ onDataUpdate, data, setAudio, setShowVisualizer }: StartB
   };
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
 
     return () => {
       if (timeoutId) {

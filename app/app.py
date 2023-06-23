@@ -4,7 +4,7 @@ import asyncio
 import threading
 import time
 import os
-from api.modules.track_record import handle_track_recording
+from api.track_record import handle_track_recording
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)

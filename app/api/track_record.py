@@ -25,8 +25,8 @@ record_duration = 12                        # Duration of each audio snippet in 
 extension = ".wav"
 
 current_dir = os.path.dirname(os.path.abspath(__file__))                                    # Get the directory of the current Python script
-output_folder = os.path.join(current_dir, "..", "..", "recordings")                         # Construct the path to the desired folder
-database_file = os.path.join(current_dir, "..", "..", "track_database", "database.txt")     # Define the database file path
+output_folder = os.path.join(current_dir, "..", "recordings")                         # Construct the path to the desired folder
+database_file = os.path.join(current_dir, "..", "track_database", "database.txt")     # Define the database file path
 
 track_record_success = False    # Global variable to track the status of track recording
 
