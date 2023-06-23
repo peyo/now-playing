@@ -1,3 +1,6 @@
+## Overview
+I have developed an application that identifies the music being played and runs locally on a Raspberry Pi device situated in front of my record player. This app allows me to discover the track information of the music I'm listening to in real-time.
+
 ## Getting Started
 
 Run the front end. Navigate to the now-play dir in Terminal.
