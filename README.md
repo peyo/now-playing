@@ -1,6 +1,9 @@
 ## Overview
 I have developed an application that identifies the music being played and runs locally on a Raspberry Pi device situated in front of my record player. This app allows me to discover the track information of the music I'm listening to in real-time.
 
+Using https://www.npmjs.com/package/react-audio-visualizers for the visualizer.
+Using https://pypi.org/project/shazamio/ for the track identifier.
+
 ## Getting Started
 
 Run the front end. Navigate to the now-play dir in Terminal.
